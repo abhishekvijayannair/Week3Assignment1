@@ -65,7 +65,7 @@ footer {
 					id="passwordId" name="passwordId"><br>
 			</div>
 			<div class="child-div">
-				<button>Submit</button>
+				<button>Login</button>
 			</div>
 		</form>
 	</main>
