@@ -43,13 +43,12 @@ footer {
 	width: 100%;
 	height: 2.5rem;
 	text-shadow: 0.75px 0px grey;
-	position: absolute;
 }
 
-@
-keyframes blinker { 50% {
-	opacity: 0;
-}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 </style>
 </head>
