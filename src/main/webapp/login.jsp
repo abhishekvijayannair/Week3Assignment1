@@ -55,14 +55,14 @@ footer {
 <body>
 	<header id="login_head"> Login </header>
 	<main id="bodydiv">
-		<form>
+		<form action="ValidationServlet" method="POST">
 			<div class="child-div">
-				<label for="usernameId">Username : </label><input type="text"
-					id="usernameId" name="usernameId"><br>
+				<label for="username">Username : </label><input type="text"
+					id="username" name="username"><br>
 			</div>
 			<div class="child-div">
-				<label for="passwordId">Password : </label><input type="password"
-					id="passwordId" name="passwordId"><br>
+				<label for="password">Password : </label><input type="password"
+					id="password" name="password"><br>
 			</div>
 			<div class="child-div">
 				<button>Submit</button>
