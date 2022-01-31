@@ -63,6 +63,11 @@ public class ValidationServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ResponseServlet");
 			requestDispatcher.forward(request, response);
 		}
+		else
+		{
+			System.out.println("Invalid");
+			response.sendRedirect("login.jsp");
+		}
 	}
 
 }
