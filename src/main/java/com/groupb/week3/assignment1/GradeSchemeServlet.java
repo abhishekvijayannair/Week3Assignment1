@@ -88,43 +88,43 @@ public class GradeSchemeServlet extends HttpServlet {
         	grade = "A+";
         	gradePoint = 4;
         }
-        else if (avg <= 93 && avg >= 87) {
+        else if (avg < 94 && avg >= 87) {
         	grade = "A";
         	gradePoint = 3.7;
         }
-        else if (avg <= 86 && avg >= 80) {
+        else if (avg < 87 && avg >= 80) {
         	grade = "A-";
         	gradePoint = 3.5;
         }
-        else if (avg <= 79 && avg >= 77) {
+        else if (avg < 80 && avg >= 77) {
         	grade = "B+";
         	gradePoint = 3.2;
         }
-        else if (avg <= 76 && avg >= 73) {
+        else if (avg < 77 && avg >= 73) {
         	grade = "B";
         	gradePoint = 3.0;
         }
-        else if (avg <= 70 && avg >= 72) {
+        else if (avg < 73 && avg >= 72) {
         	grade = "B-";
         	gradePoint = 2.7;
         }
-        else if (avg <= 67 && avg >= 69) {
+        else if (avg < 72 && avg >= 69) {
         	grade = "C+";
         	gradePoint = 2.3;
         }
-        else if (avg <= 66 && avg >= 63) {
+        else if (avg < 69 && avg >= 63) {
         	grade = "C";
         	gradePoint = 2.0;
         }
-        else if (avg <= 62 && avg >= 60) {
+        else if (avg < 63 && avg >= 60) {
         	grade = "C-";
         	gradePoint = 1.7;
         }
-        else if (avg <= 59 && avg >= 50) {
+        else if (avg < 60 && avg >= 50) {
         	grade = "D";
         	gradePoint = 1.0;
         }
-        else if (avg <= 0 && avg >= 49) {
+        else if (avg < 50 && avg >=0 ) {
         	grade = "F";
         	gradePoint = 0.0;
         }

@@ -42,7 +42,6 @@ public class ResponseServlet extends HttpServlet {
 		String username = (String)session.getAttribute("user");
 		
 		out.print("Welcome " + username + " !!!");
-		out.print("Please enter below details:");
 		
 		String htmlResponse = "<html>";
 		htmlResponse += "<h3>Please enter below details: </h3><br>";   
