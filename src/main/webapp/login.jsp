@@ -69,6 +69,6 @@ footer {
 			</div>
 		</form>
 	</main>
-	<footer>Created by: Group B</footer>
+	<footer>Created by: Group B - Abhishek, Sanjay, Kevin, Jith, Suchitra</footer>
 </body>
 </html>
