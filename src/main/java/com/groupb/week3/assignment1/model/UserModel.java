@@ -4,8 +4,9 @@
 package com.groupb.week3.assignment1.model;
 
 /**
- * @author abhis
- *
+ * @Date - 30/01/2022
+ * @Author - Jith Koshy
+ * @Description - This object model create the model for the admin user.
  */
 public class UserModel {
 	private String username;
