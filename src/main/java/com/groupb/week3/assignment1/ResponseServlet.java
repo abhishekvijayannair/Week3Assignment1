@@ -3,8 +3,9 @@ package com.groupb.week3.assignment1;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Optional;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -15,61 +16,85 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ResponseServlet
+ * 
+ * @Date - 30/01/2022
+ * 
+ * @Author - Sanjay Raj
+ * @Description - Create servlet web page for adding student information to the
+ *              grade system and the calculation is done through
+ *              gradeschemeservlet
+ * 
  */
 @WebServlet("/ResponseServlet")
 public class ResponseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ResponseServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		//student name and scores
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
-		HttpSession session = request.getSession(false);
-		String username = (String)session.getAttribute("user");
-		
-		out.print("Welcome " + username + " !!!");
-		
-		String htmlResponse = "<html>";
-		htmlResponse += "<h3>Please enter below details: </h3><br>";   
-		
-		htmlResponse += "<form action='GradeSchemeServlet' method='post'>";
-		htmlResponse += "Student Name <input type='text' name='studentname'><br>";
-		htmlResponse += "<h3>Please enter scores: </h3><br/>";  
-		htmlResponse += "CSD3354 <input type='number' name='sub1'><br>";
-		htmlResponse += "CSD4464 <input type='number' name='sub2'><br>";
-		htmlResponse += "CSD4203 <input type='number' name='sub3'><br>";
-		htmlResponse += "CSD3183 <input type='number' name='sub4'><br>";
-		htmlResponse += "CSD3313 <input type='number' name='sub5'><br>";
-		htmlResponse += "<input type='submit' value='go'><br>";
-		htmlResponse += "</form>";
-		htmlResponse += "</html>";
-		
-		out.println(htmlResponse);
-		
-		out.close();
+	public ResponseServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		// student name and scores
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession(false);
+
+		if (session.getAttribute("user") != null && (String) session.getAttribute("user") != "") {
+			String username = (String) session.getAttribute("user");
+
+			Optional<String> cookieValue = Arrays.stream(request.getCookies()).filter(c -> "user".equals(c.getName()))
+					.map(Cookie::getValue).findAny();
+			out.print("<html><body><b>Welcome " + cookieValue.get() + " to Student Grade Information System</b>");
+			out.print("<form action='LogoutServlet' method='GET'><button type='submit'>LOGOUT</button></form>");
+
+			String htmlResponse = "";
+			htmlResponse += "<h5>Please enter below details: </h5>";
+			htmlResponse += "<form action='GradeSchemeServlet' method='post'>";
+			htmlResponse += "Student Name <input type='text' name='studentname'><br>";
+			htmlResponse += "<h5>Please enter scores: </h5>";
+			htmlResponse += "<table>";
+			htmlResponse += "<tr><td>CSD3354 Web Applications Using C# .NET</td><td><input type='number' name='sub1'></td></tr>";
+			htmlResponse += "<tr><td>CSD4464 Programming Java EE</td><td><input type='number' name='sub2'></td></tr>";
+			htmlResponse += "<tr><td>CSD4203 Database Programming</td><td><input type='number' name='sub3'></td></tr>";
+			htmlResponse += "<tr><td>CSD3183 Mobile Development</td><td><input type='number' name='sub4'></td></tr>";
+			htmlResponse += "<tr><td>CSD3313 Web Technologies III</td><td><input type='number' name='sub5'></td></tr>";
+			htmlResponse += "<tr><td><input type='submit' value='ADD STUDENT INFORMAION'></td><td></td></tr></table>";
+			htmlResponse += "</form>";
+			htmlResponse += "</br></br></br></br>";
+			htmlResponse += "<p>More features :</p>";
+			htmlResponse += "<form action='final.jsp' method='POST'><button type='submit'>SHOW STUDENT INFORMATION</button></form>";
+			htmlResponse += "</body></html>";
+
+			out.println(htmlResponse);
+
+			out.close();
+
+		} else {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("LogoutServlet");
+			requestDispatcher.forward(request, response);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
- 
+
 	}
 
 }
