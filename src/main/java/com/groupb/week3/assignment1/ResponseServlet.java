@@ -52,10 +52,16 @@ public class ResponseServlet extends HttpServlet {
 
 		if (session.getAttribute("user") != null && (String) session.getAttribute("user") != "") {
 			String username = (String) session.getAttribute("user");
-
-			Optional<String> cookieValue = Arrays.stream(request.getCookies()).filter(c -> "user".equals(c.getName()))
-					.map(Cookie::getValue).findAny();
-			out.print("<html><body><b>Welcome " + cookieValue.get() + " to Student Grade Information System</b>");
+			String userCookie = "";
+			Cookie[] cookies = request.getCookies();
+			for (int i = 0; i < cookies.length; i++) {
+				if (cookies[i].getName().equals("user")) {
+					userCookie = cookies[i].getValue();
+				}
+			}
+//			Optional<String> cookieValue = Arrays.stream(request.getCookies()).filter(c -> "user".equals(c.getName()))
+//					.map(Cookie::getValue).findAny();
+			out.print("<html><body><b>Welcome " + userCookie + " to Student Grade Information System</b>");
 			out.print("<form action='LogoutServlet' method='GET'><button type='submit'>LOGOUT</button></form>");
 
 			String htmlResponse = "";
